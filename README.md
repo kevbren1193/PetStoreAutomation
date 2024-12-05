@@ -5,9 +5,9 @@
 ### Pet API
 
 #### Positive Test Cases
-1. Add a new pet with valid data. **(H)**
+1. Add a new pet with valid data. **(H)** _Performance_
 2. Update an existing pet with valid data. **(M)**
-3. Get all pets by a status.**(H)**
+3. Get all pets by a status.**(H)** _Performance_
 4. Retrieve a pet with a valid ID.**(H)**
 5. Delete a pet with a valid ID.**(L)**
 
@@ -15,7 +15,7 @@
 1. Add a pet with missing required fields. **(H)**
 2. Update a pet with an inexistent ID. **(M)**
 3. Get pets with an invalid status.**(H)**
-4. Retrieve a pet with an inexistent ID.
+4. Retrieve a pet with an inexistent ID. **(M)**
 5. Delete a pet with an inexistent ID. **(L)**
 
 #### End-to-End Test Case
@@ -25,7 +25,7 @@
 
 #### Positive Test Cases
 1. Create a new user with valid data. **(H)**
-2. Log in with valid credentials. **(H)**
+2. Log in with valid credentials. **(H)** _Performance_
 3. Log out after logging in. **(M)**
 4. Retrieve user details by username. **(M)**
 5. Update user details with valid data. **(M)**
@@ -44,7 +44,7 @@
 ### Store API
 
 #### Positive Test Cases
-1. Place an order with valid data. **(H)**
+1. Place an order with valid data. **(H)** _Performance_
 2. Retrieve an order by a valid ID. **(H)**
 3. Delete an order by a valid ID. **(L)**
 
