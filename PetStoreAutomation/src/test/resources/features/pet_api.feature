@@ -3,7 +3,7 @@ Feature: Pet API Testing
   # Positive Scenarios
   Scenario: Add a new pet with valid data
     Given the pet store API is running
-    When I send a POST request to pet endpoint "/pet" with the following details:
+    When I send a POST request to "/pet" with the following pet details:
       | id | name  | status    | category.id | category.name | photoUrls                                               | tags.id | tags.name |
       | 1  | Ramon | available | 10          | Dogs          | https://test.com/photo1.jpg,https://test.com/photo2.png | 20      | Small     |
     Then I should receive a 200 status code
@@ -11,7 +11,7 @@ Feature: Pet API Testing
 
   Scenario: Get pets by a specific status
     Given the pet store API is running
-    When I send a GET request to pet endpoint "/pet/findByStatus" with status "available"
+    When I send a GET request to "/pet/findByStatus" with pet status "available"
     Then I should receive a 200 status code
     And the response should include pets with the status "available"
 
@@ -32,12 +32,12 @@ Feature: Pet API Testing
 
   Scenario: Get pets with an invalid status
     Given the pet store API is running
-    When I send a GET request to pet endpoint "/pet/findByStatus" with status "invalid_status"
+    When I send a GET request to "/pet/findByStatus" with pet status "invalid_status"
     Then I should receive a 400 status code
     And the response should include an error message "Invalid status value"
 
   Scenario: Retrieve a pet with a non-existent ID
     Given the pet store API is running
-    When I send a GET request to pet endpoint "/pet/{id}" with ID "99999"
+    When I send a GET request to "/pet/{id}" with ID "99999"
     Then I should receive a 404 status code
     And the response should include an error message "Pet not found"

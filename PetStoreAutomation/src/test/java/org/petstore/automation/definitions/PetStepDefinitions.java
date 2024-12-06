@@ -63,7 +63,7 @@ public class PetStepDefinitions {
        AssertUtils.assertResponseContains("pet name", petName, ApiUtils.getResponse().asString());
     }
 
-    @When("I send a GET request to pet endpoint {string} with status {string}")
+    @When("I send a GET request to {string} with pet status {string}")
     public void iSendAGetRequestToWithStatus(String endpoint, String status) {
         ApiUtils.setResponse(ApiUtils.requestSpecification()
                 .queryParam("status", status)
