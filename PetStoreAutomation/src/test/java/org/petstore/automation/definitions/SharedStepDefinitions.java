@@ -14,16 +14,23 @@ public class SharedStepDefinitions {
         ApiUtils.ensureApiIsRunning();
     }
 
+    @When("I send a GET request to {string} with ID {string}")
+    public void iSendAGetRequestToWithID(String endpoint, String id) {
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
+                .pathParam("id", id)
+                .get(endpoint));
+    }
+
     @Then("I should receive a {int} status code")
     public void iShouldReceiveAStatusCode(int statusCode) {
         AssertUtils.assertStatusCodeEqual(statusCode, ApiUtils.getResponse().getStatusCode());
     }
 
-    @When("I send a GET request to {string} with status {string}")
-    public void iSendAGetRequestToWithStatus(String endpoint, String status) {
-        ApiUtils.setResponse((ApiUtils.requestSpecification()
-                .queryParam("status", status)
-                .get(endpoint)));
+    @Then("the response should include an error message {string}")
+    public void theResponseShouldIncludeAnErrorMessage(String expectedErrorMessage) {
+        String responseBody = ApiUtils.getResponse().getBody().asString();
+        AssertUtils.assertResponseContains("error message", expectedErrorMessage, responseBody);
     }
+
 }
 
