@@ -16,14 +16,7 @@ import java.util.Map;
 
 public class UserStepDefinitions {
 
-    private static final ThreadLocal<Response> response = new ThreadLocal<>();
-
-    @Given("the user endpoint is running in pet store API")
-    public void thePetStoreApiIsRunning() {
-        RestAssured.baseURI = EnvConfig.getBaseUrl();
-    }
-
-    @When("I send a POST request to user endpoint {string} with the following user details:")
+    @When("I send a POST request to {string} with the following user details:")
     public void iSendAPostRequestToWithTheFollowingUserDetail(String endpoint, DataTable table) {
         // Convert DataTable to Map
         List<Map<String, String>> data = table.asMaps(String.class, String.class);
@@ -43,19 +36,22 @@ public class UserStepDefinitions {
         requestBody.put("userStatus", Integer.parseInt(userDetails.get("userStatus")));
 
         // Send POST request
-        response.set(ApiUtils.requestSpecification()
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
                 .body(requestBody.toString())
                 .post(endpoint));
     }
 
     @Then("the response should include the user details for {string}")
     public void theResponseShouldIncludeTheUserDetails(String username) {
-        AssertUtils.assertResponseContains("username", username, response.get().asString());
+        AssertUtils.assertResponseContains("username", username, ApiUtils.getResponse().asString());
     }
 
-    @Then("I should receive a {int} status code from user endpoint")
-    public void iShouldReceiveAStatusCode(int statusCode) {
-        AssertUtils.assertStatusCodeEqual(statusCode, response.get().getStatusCode());
+    @When("I send a GET request to {string} with username {string} and password {string}")
+    public void iSendAGetRequestToWithUsernameAndPassword(String endpoint, String username, String password) {
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
+                .queryParam("username", username)
+                .queryParam("password", password)
+                .get(endpoint));
     }
 
 }
