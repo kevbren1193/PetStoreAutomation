@@ -20,6 +20,6 @@ public class AssertUtils {
 
     public static void assertResponseContains(String field, String expectedSubstring, String actual) {
         assertContains("The response does not include the expected " + field, expectedSubstring, actual);
-
     }
+
 }

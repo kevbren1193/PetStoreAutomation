@@ -17,13 +17,6 @@ import java.util.Map;
 
 public class PetStepDefinitions {
 
-    private static final ThreadLocal<Response> response = new ThreadLocal<>();
-
-    @Given("the pet endpoint is running in pet store API")
-    public void thePetStoreApiIsRunning() {
-        RestAssured.baseURI = EnvConfig.getBaseUrl();
-    }
-
     @When("I send a POST request to pet endpoint {string} with the following details:")
     public void iSendAPostRequestToWithTheFollowingDetails(String endpoint, DataTable table) {
         // Convert DataTable to List
@@ -59,31 +52,27 @@ public class PetStepDefinitions {
         requestBody.put("tags", tags);
         requestBody.put("status", petDetails.get("status"));
 
-        response.set(ApiUtils.requestSpecification()
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
                 .body(requestBody.toString())
                 .post(endpoint));
     }
 
-    @Then("I should receive a {int} status code from pet endpoint")
-    public void iShouldReceiveAStatusCode(int statusCode) {
-        AssertUtils.assertStatusCodeEqual(statusCode, response.get().getStatusCode());
-    }
 
     @Then("the response should include the pet details for {string}")
     public void theResponseShouldIncludeThePetDetails(String petName) {
-       AssertUtils.assertResponseContains("pet name", petName, response.get().asString());
+       AssertUtils.assertResponseContains("pet name", petName, ApiUtils.getResponse().asString());
     }
 
-    @When("I send a GET request to pet endpoint {string} with status {string}")
+    @When("I send a GET request to {string} with pet status {string}")
     public void iSendAGetRequestToWithStatus(String endpoint, String status) {
-        response.set(ApiUtils.requestSpecification()
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
                 .queryParam("status", status)
                 .get(endpoint));
     }
 
     @Then("the response should include pets with the status {string}")
     public void theResponseShouldIncludePetsWithTheStatus(String expectedStatus) {
-        String responseBody = response.get().getBody().asString();
+        String responseBody = ApiUtils.getResponse().getBody().asString();
         JSONArray pets = new JSONArray(responseBody);
 
         // Validate each pet in the response
@@ -96,13 +85,6 @@ public class PetStepDefinitions {
                     actualStatus
             );
         }
-    }
-
-    @When("I send a GET request to pet endpoint {string} with ID {string}")
-    public void iSendAGetRequestToWithID(String endpoint, String id) {
-        response.set(ApiUtils.requestSpecification()
-                .pathParam("id", id)
-                .get(endpoint));
     }
 
     @When("I send a POST request to pet endpoint {string} with the following incomplete details:")
@@ -119,15 +101,10 @@ public class PetStepDefinitions {
         requestBody.put("status", petDetails.get("status"));
 
         // Send POST request
-        response.set(ApiUtils.requestSpecification()
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
                 .body(requestBody.toString())
                 .post(endpoint));
     }
 
-    @Then("the response from pet endpoint should include an error message {string}")
-    public void theResponseShouldIncludeAnErrorMessage(String expectedErrorMessage) {
-        String responseBody = response.get().getBody().asString();
-        AssertUtils.assertResponseContains("error message", expectedErrorMessage, responseBody);
-    }
 
 }
