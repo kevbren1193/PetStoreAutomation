@@ -54,4 +54,10 @@ public class UserStepDefinitions {
                 .get(endpoint));
     }
 
+    @When("I send a GET request to {string} with username {string}")
+    public void iSendAGetRequestToWithUsername(String endpoint, String username) {
+        ApiUtils.setResponse(ApiUtils.requestSpecification()
+                .pathParam("username", username)
+                .get(endpoint));
+    }
 }

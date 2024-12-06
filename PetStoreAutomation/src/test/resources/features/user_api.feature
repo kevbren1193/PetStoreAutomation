@@ -13,5 +13,12 @@ Feature: User API Testing
     Given the pet store API is running
     When I send a GET request to "/user/login" with username "testUser" and password "testPass"
     Then the response headers should contain:
-      | X-Rate-Limit   |
-      | X-Expires-After|
+      | X-Rate-Limit    |
+      | X-Expires-After |
+
+  # Negative Scenarios
+  Scenario: Retrieve details of a non-existent user
+    Given the pet store API is running
+    When I send a GET request to "/user/{username}" with username "nonExistentUser"
+    Then I should receive a 404 status code
+    And the response should include message "User not found"
