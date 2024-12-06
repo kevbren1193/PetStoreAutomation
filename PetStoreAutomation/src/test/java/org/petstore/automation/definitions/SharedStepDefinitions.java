@@ -19,21 +19,11 @@ public class SharedStepDefinitions {
         AssertUtils.assertStatusCodeEqual(statusCode, ApiUtils.getResponse().getStatusCode());
     }
 
-    @When("I send a GET request to pet endpoint {string} with status {string}")
+    @When("I send a GET request to {string} with status {string}")
     public void iSendAGetRequestToWithStatus(String endpoint, String status) {
         ApiUtils.setResponse((ApiUtils.requestSpecification()
                 .queryParam("status", status)
                 .get(endpoint)));
     }
-
-    @Then("the response should include an error message {string}")
-    public void theResponseShouldIncludeAnErrorMessage(String expectedErrorMessage) {
-        Response response = ApiUtils.getResponse();
-        if (response == null) {
-            throw new IllegalStateException("No response available for validation.");
-        }
-        AssertUtils.assertResponseContains("Error message mismatch", expectedErrorMessage, response.getBody().asString());
-    }
 }
 
-}
