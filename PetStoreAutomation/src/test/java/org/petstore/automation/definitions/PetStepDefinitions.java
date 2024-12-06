@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class PetStepDefinitions {
 
-    @When("I send a POST request to pet endpoint {string} with the following details:")
+    @When("I send a POST request to {string} with the following pet details:")
     public void iSendAPostRequestToWithTheFollowingDetails(String endpoint, DataTable table) {
         // Convert DataTable to List
         List<Map<String, String>> data = table.asMaps(String.class, String.class);
