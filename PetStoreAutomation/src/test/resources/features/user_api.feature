@@ -1,3 +1,5 @@
+@all
+@userAPI
 Feature: User API Testing
 
   # Positive Scenarios

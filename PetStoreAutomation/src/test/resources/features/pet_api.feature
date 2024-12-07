@@ -1,3 +1,5 @@
+@all
+@petAPI
 Feature: Pet API Testing
 
   # Positive Scenarios
