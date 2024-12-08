@@ -32,6 +32,11 @@ public class SharedStepDefinitions {
         AssertUtils.assertStatusCodeEqual(statusCode, ApiUtils.getResponse().getStatusCode());
     }
 
+    @Then("the response schema should match schema {string}")
+    public void theResponseSchemaShouldMatch(String schema){
+        AssertUtils.validateSchema(ApiUtils.getResponse(), schema);
+    }
+
     @Then("the response should include an error message {string}")
     public void theResponseShouldIncludeAnErrorMessage(String expectedErrorMessage) {
         String responseBody = ApiUtils.getResponse().getBody().asString();

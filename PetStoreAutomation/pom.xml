@@ -52,6 +52,13 @@
             <version>2.9.1</version>
         </dependency>
 
+        <!-- JSON Schema Validator -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+
         <!-- Apache Commons for Utilities -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -125,7 +132,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <base.url>https://petstore.swagger.io/v2</base.url>
+                <base.url>https://petstore3.swagger.io/api/v3/</base.url>
             </properties>
         </profile>
     </profiles>

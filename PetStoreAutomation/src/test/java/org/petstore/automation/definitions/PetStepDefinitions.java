@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.apiguardian.api.API;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.petstore.automation.utils.AssertUtils;
@@ -60,7 +61,8 @@ public class PetStepDefinitions {
 
     @Then("the response should include the pet details for {string}")
     public void theResponseShouldIncludeThePetDetails(String petName) {
-       AssertUtils.assertResponseContains("pet name", petName, ApiUtils.getResponse().asString());
+        Response response = ApiUtils.getResponse();
+       AssertUtils.assertResponseBodyContains(response, "name", petName);
     }
 
     @When("I send a GET request to {string} with pet status {string}")

@@ -1,5 +1,6 @@
 package org.petstore.automation.definitions;
 
+import com.google.gson.Gson;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,10 +12,13 @@ import org.petstore.automation.utils.AssertUtils;
 import org.petstore.automation.utils.EnvConfig;
 import org.petstore.automation.utils.ApiUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class UserStepDefinitions {
+
+    private Map<String, Object> payload;
 
     @When("I send a POST request to {string} with the following user details:")
     public void iSendAPostRequestToWithTheFollowingUserDetail(String endpoint, DataTable table) {
@@ -24,26 +28,30 @@ public class UserStepDefinitions {
         // Get the first row of data
         Map<String, String> userDetails = data.get(0);
 
-        // Build the User JSON Object
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("id", Integer.parseInt(userDetails.get("id")));
-        requestBody.put("username", userDetails.get("username"));
-        requestBody.put("firstName", userDetails.get("firstName"));
-        requestBody.put("lastName", userDetails.get("lastName"));
-        requestBody.put("email", userDetails.get("email"));
-        requestBody.put("password", userDetails.get("password"));
-        requestBody.put("phone", userDetails.get("phone"));
-        requestBody.put("userStatus", Integer.parseInt(userDetails.get("userStatus")));
+        // Build payload
+        payload = new HashMap<>();
+        payload.put("id", Integer.parseInt(userDetails.get("id")));
+        payload.put("username", userDetails.get("username"));
+        payload.put("firstName", userDetails.get("firstName"));
+        payload.put("lastName", userDetails.get("lastName"));
+        payload.put("email", userDetails.get("email"));
+        payload.put("password", userDetails.get("password"));
+        payload.put("phone", userDetails.get("phone"));
+        payload.put("userStatus", Integer.parseInt(userDetails.get("userStatus")));
+
+        // Convert payload to JSON string
+        Gson gson = new Gson();
+        String jsonPayload = gson.toJson(payload);
 
         // Send POST request
         ApiUtils.setResponse(ApiUtils.requestSpecification()
-                .body(requestBody.toString())
+                .body(jsonPayload.toString())
                 .post(endpoint));
     }
 
     @Then("the response should include the user details for {string}")
     public void theResponseShouldIncludeTheUserDetails(String username) {
-        AssertUtils.assertResponseContains("username", username, ApiUtils.getResponse().asString());
+        AssertUtils.assertResponseBodyContains(ApiUtils.getResponse(), "username", username);
     }
 
     @When("I send a GET request to {string} with username {string} and password {string}")

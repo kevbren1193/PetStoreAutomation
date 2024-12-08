@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "org.petstore.automation",
         plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber-reports.json"},
-        monochrome = true,
-        tags = "@all"
+        monochrome = true
 )public class TestRunner {
 }
