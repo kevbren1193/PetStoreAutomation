@@ -11,7 +11,7 @@ This part of the document describes the test cases categorized by APIs, their pr
 | Add a new pet with valid data                           | High         | Yes                  | Yes                   |
 | Update an existing pet with valid data                 | Medium       | No                   | No                    |
 | Get all pets by a status                                | High         | Yes                  | Yes                   |
-| Retrieve a pet with a valid ID                         | High         | Yes                  | No                    |
+| Retrieve a pet with a valid ID                         | High         | Yes                  | Yes                    |
 | Delete a pet with a valid ID                           | Low          | No                   | No                    |
 | **Negative Test Cases**                                 |              |                      |                       |
 | Add a pet with missing required fields                 | High         | Yes                  | No                    |
@@ -51,7 +51,7 @@ This part of the document describes the test cases categorized by APIs, their pr
 | **Test Case**                                           | **Priority** | **Automation Test** | **Performance Test** |
 |---------------------------------------------------------|--------------|----------------------|-----------------------|
 | **Positive Test Cases**                                 |              |                      |                       |
-| Place an order with valid data                         | High         | Yes                  | Yes                   |
+| Place an order with valid data                         | High         | Yes                  | No                   |
 | Retrieve an order by a valid ID                        | High         | Yes                  | No                    |
 | Delete an order by a valid ID                          | Low          | No                   | No                    |
 | **Negative Test Cases**                                 |              |                      |                       |
