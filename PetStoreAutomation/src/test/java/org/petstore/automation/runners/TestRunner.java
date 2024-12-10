@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "org.petstore.automation",
-        plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber-reports.json"},
+        plugin = {"pretty", "html:target/reports/cucumber-reports.html", "json:target/reports/cucumber-reports.json"},
         monochrome = true
 )public class TestRunner {
 }
