@@ -64,7 +64,7 @@ This part of the document describes the test cases categorized by APIs, their pr
 
 ---
 ## Automation Project Description
-This project automates the API testing of Pet Store API v3. For acomlishing this I used Java, Cucumber and Rest-Assured.
+This project automates the API testing of Pet Store API v3. To accomplish this I used Java, Cucumber and Rest-Assured.
 Automated test cases cover the critical functionalities separated by Pet API, User API and Store API. Pet Store API documentation can be found in https://github.com/swagger-api/swagger-petstore
 
 ### Tools and Technologies
