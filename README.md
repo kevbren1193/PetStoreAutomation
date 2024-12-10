@@ -212,6 +212,6 @@ k6 run --out json=results/stressTestResults.json petStoreStressest.js
 ```
 
 #### View Reports
-- **HTML** reports are generated in the `reports` folder, **JSON** results are generated in the `results` folder.
+- **HTML** and **JSON** reports are generated in the root folder.
 - Open the `stressTestSummary.html` and/ or `loadTestSummary.html` file in a web browser.
     
