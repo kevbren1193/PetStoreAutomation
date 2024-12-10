@@ -82,14 +82,14 @@ Automated test cases cover the critical functionalities separated by Pet API, Us
 - Supports parallel execution of test cases for faster feedback.
 
 ---
-### Project Setup and Requirements
+### Automation Project Setup and Requirements
 #### Prerequisites
 - **Java 21**: Download and install Java 21 from Oracle website https://www.oracle.com/java/technologies/javase-downloads.html or use OpenJDK.
 - **Maven**: Download and install Maven from oficcial site https://maven.apache.org/download.cgi
 
 #### Steps to build
 - Download and extract this project, or clone it using git.
-- Open terminal, console or cmd and navigate to project folder.
+- Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStoreAutomation`.
 - Build the project: 
 ```bash
 mvn clean install
@@ -152,3 +152,66 @@ mvn clean test -Pprod -DthreadCount=4 "-Dcucumber.filter.tags=@storeAPI or @user
 1. Gives important data about system reliability.
 2. Gives an understanding of how user experience is going to perfom based on response times.
 3. Gives important data for a better resource planing which also impacts the system cost.
+
+
+---
+## Performance Project Description
+This project focuses on performance testing a RESTful API for the PetStore v3 API. The goal is to validate the application’s reliability and responsiveness under various load and stress scenarios.
+
+### Tools and Technologies
+- **K6**: Open-source loadtesting tool used to write and execute performance tests.
+- **k6-reporter**: K6 extension to generate a visual HTML report.
+
+### Test Scenarios
+**1. Load Test** : Its purpose is to evaluate the system performance under a consistent load.
+- Configuration: 
+    * 20 Virtual users.
+    * 2m Duration.
+
+- Executor: constant-vus.
+
+**2. Stress Test** : Its purpose is to evaluate the system's behaviour under gradually increasing the load to identify beaking points
+
+- Configuration: 
+    * Start with 0 Virtual Users (VUs).
+    * Ramp up to 50 VUs in 1m.
+    * Sustain 100 VUs for 2m.
+    * Ramp down to 0 VUs in 1m.
+
+- Executor: ramping-vus.
+
+### Test Workflow
+1. **Login**: call API **GET /user/login** to simulate user login.
+2. **Get Pets by Status**: call API **GET /pet/findByStatus?status=available** to simulate a home page grid load of available pets.
+3. **Create a Pet**: call API **POST /pet** to create a new pet with a random ID.
+4. **Get Pet by ID**: call API **GET /pet/{id}** to simulate loading the newly created pet.
+
+---
+### Performance Project Setup and Requirements
+#### Prerequisites
+- **K6**: Download and install K6 from official website https://k6.io/open-source/
+
+#### Steps to build
+- Download and extract this project, or clone it using git.
+- Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStoreAutomation`.
+- Build the project: 
+```bash
+mvn clean install
+```
+
+---
+### Performance Project Execution
+- Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStorePerformance`.
+- Run load test:
+```bash
+k6 run --out json=results/loadTestResults.json petStoreLoadTest.js
+```
+- Run stress test:
+```bash
+k6 run --out json=results/stressTestResults.json petStoreStressest.js
+```
+
+#### View Reports
+- **HTML** reports are generated in the `reports` folder, **JSON** results are generated in the `results` folder.
+- Open the `stressTestSummary.html` and/ or `loadTestSummary.html` file in a web browser.
+    
