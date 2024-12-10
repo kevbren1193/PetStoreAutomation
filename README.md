@@ -191,14 +191,6 @@ This project focuses on performance testing a RESTful API for the PetStore v3 AP
 #### Prerequisites
 - **K6**: Download and install K6 from official website https://k6.io/open-source/
 
-#### Steps to build
-- Download and extract this project, or clone it using git.
-- Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStoreAutomation`.
-- Build the project: 
-```bash
-mvn clean install
-```
-
 ---
 ### Performance Project Execution
 - Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStorePerformance`.
