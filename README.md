@@ -55,7 +55,7 @@ This part of the document describes the test cases categorized by APIs, their pr
 | Retrieve an order by a valid ID                        | High         | Yes                  | No                    |
 | Delete an order by a valid ID                          | Low          | No                   | No                    |
 | **Negative Test Cases**                                 |              |                      |                       |
-| Place an order with an inexistent pet ID               | High         | Yes                  | No                    |
+| Place an order with invalid pet id field              | High         | Yes                  | No                    |
 | Retrieve an order with a non-existent ID               | High         | No                   | No                    |
 | Delete an order with a non-existent ID                 | Low          | No                   | No                    |
 | **End-to-End Test Case**                                |              |                      |                       |
