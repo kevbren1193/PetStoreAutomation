@@ -18,7 +18,7 @@ Feature: Store API Testing
     And the response schema should match schema "order-schema.json"
     And the response should include the details for order 10
 
-  Scenario: Place and order with invalid pet id field
+  Scenario: Place an order with invalid pet id field
     Given the pet store API is running
     When I send a POST request to "/store/order" with the following order details:
       | id | petId   | quantity | shipDate             | status   | complete |
