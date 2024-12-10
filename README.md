@@ -208,7 +208,7 @@ k6 run --out json=loadTestResults.json petStoreLoadTest.js
 ```
 - Run stress test:
 ```bash
-k6 run --out json=stressTestResults.json petStoreStressest.js
+k6 run --out json=stressTestResults.json petStoreStressTest.js
 ```
 
 #### View Reports
