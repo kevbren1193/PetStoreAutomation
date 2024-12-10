@@ -204,11 +204,11 @@ mvn clean install
 - Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStorePerformance`.
 - Run load test:
 ```bash
-k6 run --out json=results/loadTestResults.json petStoreLoadTest.js
+k6 run --out json=loadTestResults.json petStoreLoadTest.js
 ```
 - Run stress test:
 ```bash
-k6 run --out json=results/stressTestResults.json petStoreStressest.js
+k6 run --out json=stressTestResults.json petStoreStressest.js
 ```
 
 #### View Reports
