@@ -204,14 +204,14 @@ mvn clean install
 - Open terminal, console or cmd and navigate to project folder `PetStoreAutomation/PetStorePerformance`.
 - Run load test:
 ```bash
-k6 run --out json=results/loadTestResults.json petStoreLoadTest.js
+k6 run --out json=loadTestResults.json petStoreLoadTest.js
 ```
 - Run stress test:
 ```bash
-k6 run --out json=results/stressTestResults.json petStoreStressest.js
+k6 run --out json=stressTestResults.json petStoreStressTest.js
 ```
 
 #### View Reports
-- **HTML** reports are generated in the `reports` folder, **JSON** results are generated in the `results` folder.
+- **HTML** and **JSON** reports are generated in the root folder.
 - Open the `stressTestSummary.html` and/ or `loadTestSummary.html` file in a web browser.
     
