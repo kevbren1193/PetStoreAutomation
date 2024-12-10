@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class UserStepDefinitions {
 
-    private Map<String, Object> payload;
+
 
     @When("I send a POST request to {string} with the following user details:")
     public void iSendAPostRequestToWithTheFollowingUserDetail(String endpoint, DataTable table) {
@@ -29,7 +29,7 @@ public class UserStepDefinitions {
         Map<String, String> userDetails = data.get(0);
 
         // Build payload
-        payload = new HashMap<>();
+        Map<String, Object> payload = new HashMap<>();
         payload.put("id", Integer.parseInt(userDetails.get("id")));
         payload.put("username", userDetails.get("username"));
         payload.put("firstName", userDetails.get("firstName"));

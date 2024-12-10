@@ -28,7 +28,7 @@ public class StoreStepDefinitions {
         // Build payload
         Map<String, Object> payload = new HashMap<>();
         payload.put("id", Integer.parseInt(orderDetails.get("id")));
-        payload.put("petId", Integer.parseInt(orderDetails.get("petId")));
+        payload.put("petId", orderDetails.get("petId"));
         payload.put("quantity", Integer.parseInt(orderDetails.get("quantity")));
         payload.put("shipDate", orderDetails.get("shipDate"));
         payload.put("status", orderDetails.get("status"));

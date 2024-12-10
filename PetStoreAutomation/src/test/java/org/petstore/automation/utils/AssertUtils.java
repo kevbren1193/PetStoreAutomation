@@ -38,9 +38,13 @@ public class AssertUtils {
     }
 
     public static void validateSchema(Response response, String schema) {
-        response.then()
-                .assertThat()
-                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(String.format("schemas/%s", schema)));
+        try {
+            response.then()
+                    .assertThat()
+                    .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(String.format("schemas/%s", schema)));
+        } catch (AssertionError e){
+            throw new AssertionError(e.getMessage());
+        }
     }
 
 }

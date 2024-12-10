@@ -11,6 +11,7 @@ Feature: Pet API Testing
     And the response schema should match schema "pet-schema.json"
     And the response should include the pet details for "Ramon"
 
+
   Scenario Outline: Get pets by a specific status
     Given the pet store API is running
     When I send a GET request to "/pet/findByStatus" with pet status "<status>"
